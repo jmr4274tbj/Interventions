@@ -2,50 +2,14 @@ import { ZonesValidator } from "./longueur-minimum.component";
 import { AbstractControl } from '@angular/forms';
 
 describe('longueur zone Validator', () => {
-    /*it('valeur valide 1 pour plage entre 3 et 200', () => {
-        // Préparer une variable pour manipuler le validateur
-        let validator = ZonesValidator.longeurMinimum(3, 200);
-        let control = { value: 3};
-        // Faire l'appel du validateur
-        let result = validator(control as AbstractControl);
-        // Comparer le résultat obtenu avec le résultat prévu
-        expect(result).toBeNull();
-    });
-    
-    it('valeur invalide 202 pour plage entre 3 et 200', () => {
-        // Préparer une variable pour manipuler le validateur
-        let validator = ZonesValidator.longeurMinimum(3, 200);
-        let control = { value: 202};
-        // Faire l'appel du validateur
-        let result = validator(control as AbstractControl);
-        // Comparer le résultat obtenu avec le résultat prévu
-        expect(result['nbreCaracteresInsuffisants']).toBe(true);
-    });
-
-    it('valeur invalide 10 pour plage entre 10 et 20', () => {
-        // Préparer une variable pour manipuler le validateur
-        let validator = ZonesValidator.longeurMinimum(10, 20);
-        let control = { value: 10};
-        // Faire l'appel du validateur
-        let result = validator(control as AbstractControl);
-        // Comparer le résultat obtenu avec le résultat prévu
-        expect(result).toBeNull();
-    });
-
-    it('valeur null pour plage entre 3 et 200', () => {
-        // Préparer une variable pour manipuler le validateur
-        let validator = ZonesValidator.longeurMinimum(3, 200);
-        let control = { value: 202};
-        // Faire l'appel du validateur
-        let result = validator(control as AbstractControl);
-        // Comparer le résultat obtenu avec le résultat prévu
-        expect(result['nbreCaracteresInsuffisants']).toBe(true);
-    });*/
     
     it('une chaîne avec 10 espaces est invalide', () => {
+        // Préparer une variable pour manipuler le validateur
         let validator = ZonesValidator.longeurMinimum(3);
         let control = { value: '          '};
+         // Faire l'appel du validateur
         let result = validator(control as AbstractControl);
+        // Comparer le résultat obtenu avec le résultat prévu
         expect(result['nbreCaracteresInsuffisants']).toBe(true);
     });
 
@@ -93,14 +57,9 @@ describe('longueur zone Validator', () => {
 
     it('une chaîne nulle est invalide', () => {
         let validator = ZonesValidator.longeurMinimum(3);
-        let control = { value: null};
+        let control = { value: ''};
         let result = validator(control as AbstractControl);
         expect(result['nbreCaracteresInsuffisants']).toBe(true);
     });
- 
-    /* Dans probleme.component.spec.tschanger les titres
-    et revisiter ces tests afin de les faire passer au vert:
-    - Zone PRÉNOM invalide avec 10 espaces 
-    - Zone PRÉNOM invalide avec 2 espaces et 1 caractère */
 
 });
