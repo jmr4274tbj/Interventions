@@ -23,6 +23,7 @@
               'is-invalid': (problemeForm.get('prenom').touched || 
               problemeForm.get('prenom').dirty) &&
               (!problemeForm.get('prenom').valid )}"/>   
+
               <span class="form-text" *ngIf="(problemeForm.get('prenom').touched || 
               problemeForm.get('prenom').dirty) &&
               (problemeForm.get('prenom').errors)">
@@ -36,7 +37,8 @@
                       Merci de saisir votre prénom.
                     </small>
                   </span>
-              </span>       
+              </span>
+
           </div>
         </div>
       </form>
