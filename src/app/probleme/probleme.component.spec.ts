@@ -59,7 +59,7 @@ describe('ProblemeComponent', () => {
 
   it('Zone PRÉNOM invalide avec 2 espaces et 1 caractère', () => { // A été changer de valide à invalide
     let zone = component.problemeForm.controls['prenom'];
-    zone.setValue(' '.repeat(2) + 'a'.repeat(1));
+    zone.setValue(' '.repeat(2) + 'a');
     expect(zone.valid).toBeFalsy(); // A été changer de truthy à falsy
   });
 
