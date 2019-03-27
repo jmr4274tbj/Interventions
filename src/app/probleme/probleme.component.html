@@ -9,6 +9,7 @@
       novalidate
       (ngSubmit)="save()"
       [formGroup]="problemeForm">
+      
         <div class="form-group row">
           <label for="prenomId" class="col-md-2 col-form-label text-right">Prénom:</label>
           <div class="col-sm-10">
@@ -28,12 +29,12 @@
               problemeForm.get('prenom').dirty) &&
               (problemeForm.get('prenom').errors)">
                   <span *ngIf="problemeForm.get('prenom').errors.required">
-                    <small class="text-muted">
+                    <small>
                       Merci de saisir votre prénom.
                     </small>
                   </span>
                   <span *ngIf="problemeForm.get('prenom').errors.nbreCaracteresInsuffisants">
-                    <small class="text-muted">
+                    <small>
                       Veuillez entrer plus de caractères.
                     </small>
                   </span>
@@ -41,6 +42,59 @@
 
           </div>
         </div>
+
+        <div class="form-group row">
+          <label for="prenomId" class="col-md-2 col-form-label text-right">Nom:</label>
+          <div class="col-sm-10">
+              <input class="form-control" 
+              id="nomId" 
+              type="text" 
+              placeholder="Votre nom ici (obligatoire)" 
+              formControlName="prenom"
+              [ngClass]="{'is-valid': (problemeForm.get('prenom').touched || 
+              problemeForm.get('prenom').dirty) &&
+              (problemeForm.get('prenom').valid),
+              'is-invalid': (problemeForm.get('prenom').touched || 
+              problemeForm.get('prenom').dirty) &&
+              (!problemeForm.get('prenom').valid )}"/>   
+
+              <span class="form-text" *ngIf="(problemeForm.get('prenom').touched || 
+              problemeForm.get('prenom').dirty) &&
+              (problemeForm.get('prenom').errors)">
+                  <span *ngIf="problemeForm.get('prenom').errors.required">
+                    <small>
+                      Merci de saisir votre nom de famille.
+                    </small>
+                  </span>
+                  <span *ngIf="problemeForm.get('prenom').errors.nbreCaracteresInsuffisants">
+                    <small>
+                      Veuillez entrer moins de caractères.
+                    </small>
+                  </span>
+              </span>
+
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="noCategorieId" class="col-md-2 col-form-label text-right">Type de problème:</label>
+          <div class="col-sm-10">
+              <select class="form-control"
+              id="noCategorieId"
+              formControlName="noCategorie">
+                <option value="">Sélectionner un type de problème (obligatoire) ...</option>
+                <option value="1">Problème avec la souris</option>
+                <option value="2">Problème de clavier</option>
+                <option value="3">Problème d'accès Internet</option>
+                <option value="4">Problème avec un logiciel</option>
+                <option value="5">Problème d'imprimante</option>
+                <option value="6">Carte graphique</option>
+                <option value="7">Carte mère</option>
+                <option value="8">Autre</option>
+            </select>
+          </div>
+        </div>
+
       </form>
     </div>
   </div>
