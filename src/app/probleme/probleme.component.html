@@ -44,29 +44,29 @@
         </div>
 
         <div class="form-group row">
-          <label for="prenomId" class="col-md-2 col-form-label text-right">Nom:</label>
+          <label for="nomId" class="col-md-2 col-form-label text-right">Nom:</label>
           <div class="col-sm-10">
               <input class="form-control" 
               id="nomId" 
               type="text" 
               placeholder="Votre nom ici (obligatoire)" 
-              formControlName="prenom"
-              [ngClass]="{'is-valid': (problemeForm.get('prenom').touched || 
-              problemeForm.get('prenom').dirty) &&
-              (problemeForm.get('prenom').valid),
-              'is-invalid': (problemeForm.get('prenom').touched || 
-              problemeForm.get('prenom').dirty) &&
-              (!problemeForm.get('prenom').valid )}"/>   
+              formControlName="nom"
+              [ngClass]="{'is-valid': (problemeForm.get('nom').touched || 
+              problemeForm.get('nom').dirty) &&
+              (problemeForm.get('nom').valid),
+              'is-invalid': (problemeForm.get('nom').touched || 
+              problemeForm.get('nom').dirty) &&
+              (!problemeForm.get('nom').valid )}"/>   
 
-              <span class="form-text" *ngIf="(problemeForm.get('prenom').touched || 
-              problemeForm.get('prenom').dirty) &&
-              (problemeForm.get('prenom').errors)">
-                  <span *ngIf="problemeForm.get('prenom').errors.required">
+              <span class="form-text" *ngIf="(problemeForm.get('nom').touched || 
+              problemeForm.get('nom').dirty) &&
+              (problemeForm.get('nom').errors)">
+                  <span *ngIf="problemeForm.get('nom').errors.required">
                     <small>
                       Merci de saisir votre nom de famille.
                     </small>
                   </span>
-                  <span *ngIf="problemeForm.get('prenom').errors.nbreCaracteresInsuffisants">
+                  <span *ngIf="problemeForm.get('nom').errors.nbreCaracteresTropEleve">
                     <small>
                       Veuillez entrer moins de caractères.
                     </small>
@@ -77,21 +77,31 @@
         </div>
 
         <div class="form-group row">
-          <label for="noCategorieId" class="col-md-2 col-form-label text-right">Type de problème:</label>
+          <label for="noProblemeId" class="col-md-2 col-form-label text-right">Type de problème:</label>
           <div class="col-sm-10">
               <select class="form-control"
-              id="noCategorieId"
-              formControlName="noCategorie">
+              id="noProblemeId"
+              formControlName="noProbleme"
+              [ngClass]="{'is-valid': (problemeForm.get('noProbleme').touched || 
+              problemeForm.get('noProbleme').dirty) &&
+              (problemeForm.get('noProbleme').valid),
+              'is-invalid': (problemeForm.get('noProbleme').touched || 
+              problemeForm.get('noProbleme').dirty) &&
+              (!problemeForm.get('noProbleme').valid )}">
                 <option value="">Sélectionner un type de problème (obligatoire) ...</option>
-                <option value="1">Problème avec la souris</option>
-                <option value="2">Problème de clavier</option>
-                <option value="3">Problème d'accès Internet</option>
-                <option value="4">Problème avec un logiciel</option>
-                <option value="5">Problème d'imprimante</option>
-                <option value="6">Carte graphique</option>
-                <option value="7">Carte mère</option>
-                <option value="8">Autre</option>
+                <option *ngFor="let type of categoriesProbleme" [value]="type.id">{{type.descriptionTypeProbleme}}</option> <!--affiche les valeurs-->
             </select>
+
+            <span class="form-text" *ngIf="(problemeForm.get('noProbleme').touched || 
+              problemeForm.get('noProbleme').dirty) &&
+              (problemeForm.get('noProbleme').errors)">
+                  <span *ngIf="problemeForm.get('noProbleme').errors.required">
+                    <small>
+                      Merci de sélectionner un type de problème.
+                    </small>
+                  </span>
+              </span>
+
           </div>
         </div>
 

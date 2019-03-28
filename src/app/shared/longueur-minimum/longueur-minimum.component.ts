@@ -14,4 +14,16 @@ export class ZonesValidator {
         
     }
 
+    static longeurMaximum(longueur: number): ValidatorFn {
+        // Sous angular dans des validateurs pour indiquer un succès retourner null
+        return (valeurControle : AbstractControl): { [key: string]: boolean } | null => {
+            if(valeurControle.value.trim().length <= longueur) {
+                return null;
+            } else {
+                return {'nbreCaracteresTropEleve' : true};
+            }
+        };
+        
+    }
+
 }
