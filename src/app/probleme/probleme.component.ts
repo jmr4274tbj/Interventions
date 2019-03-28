@@ -21,11 +21,20 @@ export class ProblemeComponent implements OnInit {
       prenom: ['',[ZonesValidator.longeurMinimum(3), Validators.required]],
       nom: ['',[ZonesValidator.longeurMaximum(50), Validators.required]],
       noProbleme: ['', Validators.required]
+      courrielGroup: this.fb.group({
+        courriel: [{value: '', disabled: true}],
+        courrielConfirmation: [{value: '', disabled: true}],
+        }),  
     });
 
     this.typesprobleme.obtenirTypeProbleme()
     .subscribe(type => this.categoriesProbleme = type,
                error => this.errorMessage = <any>error);
   }
+
+  appliquerNotifications(): void {
+    const courrielControl = this.problemeForm.get('');
+    courrielControl.disable();
+  } 
 
 }
