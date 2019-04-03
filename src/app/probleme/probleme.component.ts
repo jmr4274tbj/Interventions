@@ -58,8 +58,8 @@ export class ProblemeComponent implements OnInit {
     telephoneControl.disable();
 
     if (typeNotification=== 'ParCourriel') {  
-      courrielGroupControl.setValidators([Validators.required]);      
-      courrielGroupControl.enable(); 
+      //courrielGroupControl.setValidators([Validators.required]);      
+      //courrielGroupControl.enable(); 
       courrielControl.setValidators([Validators.required]);      
       courrielControl.enable();  
       courrielConfirmationControl.setValidators([Validators.required]);              
