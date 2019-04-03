@@ -34,9 +34,51 @@ export class ProblemeComponent implements OnInit {
                error => this.errorMessage = <any>error);
   }
 
-  appliquerNotifications(): void {
+  appliquerNotifications(typeNotification: string): void {
     const courrielControl = this.problemeForm.get('courrielGroup.courriel');
-    courrielControl.disable();
+    const courrielConfirmationControl = this.problemeForm.get('courrielGroup.courrielConfirmation');
+    const courrielGroupControl = this.problemeForm.get('courrielGroup');
+    const telephoneControl = this.problemeForm.get('telephone');
+   
+    // Tous remettre à zéro
+    courrielControl.clearValidators();
+    courrielControl.reset();  // Pour enlever les messages d'erreur si le controle contenait des données invaldides
+    courrielControl.disable();  
+
+    courrielConfirmationControl.clearValidators();
+    courrielConfirmationControl.reset();    
+    courrielConfirmationControl.disable();
+
+    courrielGroupControl.clearValidators();
+    courrielGroupControl.reset();    
+    courrielGroupControl.disable();
+
+    telephoneControl.clearValidators();
+    telephoneControl.reset();    
+    telephoneControl.disable();
+
+    if (typeNotification=== 'ParCourriel') {  
+      courrielGroupControl.setValidators([Validators.required]);      
+      courrielGroupControl.enable(); 
+      courrielControl.setValidators([Validators.required]);      
+      courrielControl.enable();  
+      courrielConfirmationControl.setValidators([Validators.required]);              
+      courrielConfirmationControl.enable();  
+      // Si le validateur est dans un autre fichier l'écire sous la forme suivante : 
+      // ...Validators.compose([classeDuValidateur.NomDeLaMethode()])])
+      //courrielGroupControl.setValidators([Validators.compose([datesValides])]);                       
+    } else {
+
+      if(typeNotification === 'ParSMS') {  
+        telephoneControl.setValidators([Validators.required]);      
+        telephoneControl.enable();               
+      }
+    }
+
+    courrielGroupControl.updateValueAndValidity(); 
+    courrielControl.updateValueAndValidity();   
+    courrielConfirmationControl.updateValueAndValidity();
+    telephoneControl.updateValueAndValidity();
   } 
 
 }

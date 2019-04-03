@@ -65,11 +65,32 @@ describe('ProblemeComponent', () => {
     zone.setValue(' '.repeat(2) + 'a');
     expect(zone.valid).toBeFalsy(); // A été changer de truthy à falsy
   });
+  //Tests du TP11
+  it('Zone TELEPHONE est désactivée quand ne pas me notifier', () => { 
+    component.appliquerNotifications('AucuneNotification');
 
-  it('Zone ADRESSE COURRIEL est désactivée quand ne pas me notifier ', () => { 
-    component.appliquerNotifications();
+    let zone = component.problemeForm.get('telephone');
+    expect(zone.status).toEqual('DISABLED'); 
+  });
+
+  it('Zone TELEPHONE est vide quand ne pas me notifier', () => { 
+    component.appliquerNotifications('AucuneNotification');
+
+    let zone = component.problemeForm.get('telephone');
+    expect(zone.status).toEqual('DISABLED'); 
+  });
+
+  it('Zone ADRESSE COURRIEL est désactivée quand ne pas me notifier', () => { 
+    component.appliquerNotifications('AucuneNotification');
 
     let zone = component.problemeForm.get('courrielGroup.courriel');
+    expect(zone.status).toEqual('DISABLED'); 
+  });
+
+  it('Zone CONFIRMER COURRIEL est désactivée quand ne pas me notifier', () => { 
+    component.appliquerNotifications('AucuneNotification');
+
+    let zone = component.problemeForm.get('courrielGroup.courrielConfirmation');
     expect(zone.status).toEqual('DISABLED'); 
   });
 
