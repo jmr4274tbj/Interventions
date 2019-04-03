@@ -59,13 +59,13 @@ describe('ProblemeComponent', () => {
     zone.setValue(' '.repeat(10));
     expect(zone.valid).toBeFalsy(); // A été changer de truthy à falsy
   });
-
+  //TESTS TP11
   it('Zone PRÉNOM invalide avec 2 espaces et 1 caractère', () => { // A été changer de valide à invalide
     let zone = component.problemeForm.controls['prenom'];
     zone.setValue(' '.repeat(2) + 'a');
     expect(zone.valid).toBeFalsy(); // A été changer de truthy à falsy
   });
-  //Tests du TP11
+  
   it('Zone TELEPHONE est désactivée quand ne pas me notifier', () => { 
     component.appliquerNotifications('AucuneNotification');
 
@@ -92,6 +92,39 @@ describe('ProblemeComponent', () => {
 
     let zone = component.problemeForm.get('courrielGroup.courrielConfirmation');
     expect(zone.status).toEqual('DISABLED'); 
+  });
+  //TESTS TP12
+  it('Zone TELEPHONE est désactivée quand notifier par courriel', () => { 
+    component.appliquerNotifications('ParCourriel');
+
+    let zone = component.problemeForm.get('telephone');
+    expect(zone.status).toEqual('DISABLED'); 
+  });
+
+  it('Zone ADRESSE COURRIEL est activée quand notifier par courriel', () => { 
+    component.appliquerNotifications('ParCourriel');
+
+    let zone = component.problemeForm.get('courrielGroup.courriel');
+    expect(zone.status).toEqual('ACTIVATED'); 
+  });
+
+  it('Zone CONFIRMER COURRIEL est activée quand notifier par courriel', () => { 
+    component.appliquerNotifications('ParCourriel');
+
+    let zone = component.problemeForm.get('courrielGroup.courrielConfirmation');
+    expect(zone.status).toEqual('ACTIVATED'); 
+  });
+
+  it('Zone ADRESSE COURRIEL est invalide sans valeur quand notifier par courriel', () => { 
+    component.appliquerNotifications('ParCourriel');
+    //let errors = {};
+
+    let zone = component.problemeForm.get('courrielGroup.courriel');
+    zone.setValue('');
+    expect(zone.valid).toBeFalsy();
+    //let groupe = component.problemeForm.get('courrielGroup')
+    //errors = groupe.errors || {};
+    //expect(errors['']); 
   });
 
 });

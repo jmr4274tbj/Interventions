@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ZonesValidator } from '../shared/longueur-minimum/longueur-minimum.component';
 import { TypesproblemeService } from './typesprobleme.service';
 import { ITypeProbleme } from './typesprobleme';
+import { emailMatcherValidator } from '../shared/email-matcher/email-matcher.component';
 
 @Component({
   selector: 'Inter-probleme',
@@ -57,21 +58,34 @@ export class ProblemeComponent implements OnInit {
     telephoneControl.reset();    
     telephoneControl.disable();
 
-    if (typeNotification=== 'ParCourriel') {  
-      //courrielGroupControl.setValidators([Validators.required]);      
-      //courrielGroupControl.enable(); 
+    if (typeNotification=== 'AucuneNotification') {  
+      /* Telephone -> Désactivé / Courriel -> Désactivé / CourrielConfirmation -> Désactivé */
+      courrielControl.setValidators([Validators.required]);      
+      courrielControl.disable();  
+      courrielConfirmationControl.setValidators([Validators.required]);              
+      courrielConfirmationControl.disable(); 
+      telephoneControl.setValidators([Validators.required]);      
+      telephoneControl.disable();  
+    } else if (typeNotification=== 'ParCourriel') {  
+      /* Telephone -> Désactivé / Courriel -> Activé / CourrielConfirmation -> Activé */
       courrielControl.setValidators([Validators.required]);      
       courrielControl.enable();  
       courrielConfirmationControl.setValidators([Validators.required]);              
       courrielConfirmationControl.enable();  
-      // Si le validateur est dans un autre fichier l'écire sous la forme suivante : 
-      // ...Validators.compose([classeDuValidateur.NomDeLaMethode()])])
-      //courrielGroupControl.setValidators([Validators.compose([datesValides])]);                       
+      telephoneControl.setValidators([Validators.required]);      
+      telephoneControl.disable();
+      // Le validateur est dans un autre fichier (email-matcher.component.ts) : 
+      courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])]);                       
     } else {
 
       if(typeNotification === 'ParSMS') {  
+        /* Telephone -> Activé / Courriel -> Désactivé / CourrielConfirmation -> Désactivé */
         telephoneControl.setValidators([Validators.required]);      
-        telephoneControl.enable();               
+        telephoneControl.enable();     
+        courrielControl.setValidators([Validators.required]);      
+        courrielControl.disable();  
+        courrielConfirmationControl.setValidators([Validators.required]);              
+        courrielConfirmationControl.disable();           
       }
     }
 
