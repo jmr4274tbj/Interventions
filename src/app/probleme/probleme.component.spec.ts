@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProblemeComponent } from './probleme.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TypesproblemeService } from './typesprobleme.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ProblemeComponent', () => {
   let component: ProblemeComponent;
@@ -9,8 +11,9 @@ describe('ProblemeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
-      declarations: [ ProblemeComponent ]
+      imports: [ReactiveFormsModule, HttpClientModule],
+      declarations: [ ProblemeComponent ],
+      providers:[TypesproblemeService]
     })
     .compileComponents();
   }));
@@ -61,6 +64,13 @@ describe('ProblemeComponent', () => {
     let zone = component.problemeForm.controls['prenom'];
     zone.setValue(' '.repeat(2) + 'a');
     expect(zone.valid).toBeFalsy(); // A été changer de truthy à falsy
+  });
+
+  it('Zone ADRESSE COURRIEL est désactivée quand ne pas me notifier ', () => { 
+    component.appliquerNotifications();
+
+    let zone = component.problemeForm.get('courrielGroup.courriel');
+    expect(zone.status).toEqual('DISABLED'); 
   });
 
 });

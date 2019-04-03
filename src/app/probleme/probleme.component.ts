@@ -20,11 +20,13 @@ export class ProblemeComponent implements OnInit {
     this.problemeForm = this.fb.group({
       prenom: ['',[ZonesValidator.longeurMinimum(3), Validators.required]],
       nom: ['',[ZonesValidator.longeurMaximum(50), Validators.required]],
-      noProbleme: ['', Validators.required]
+      noProbleme: ['', Validators.required], //noTypeProbleme
       courrielGroup: this.fb.group({
         courriel: [{value: '', disabled: true}],
         courrielConfirmation: [{value: '', disabled: true}],
-        }),  
+      }),
+      telephone: [{value: '', disabled: true}] 
+  
     });
 
     this.typesprobleme.obtenirTypeProbleme()
@@ -33,7 +35,7 @@ export class ProblemeComponent implements OnInit {
   }
 
   appliquerNotifications(): void {
-    const courrielControl = this.problemeForm.get('');
+    const courrielControl = this.problemeForm.get('courrielGroup.courriel');
     courrielControl.disable();
   } 
 
