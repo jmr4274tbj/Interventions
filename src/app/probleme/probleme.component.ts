@@ -76,7 +76,7 @@ export class ProblemeComponent implements OnInit {
     } else {
 
       if(typeNotification === 'ParMessagerieTexte') {  
-        telephoneControl.setValidators([Validators.required]);      
+        telephoneControl.setValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9]")]);      
         telephoneControl.enable();     
         courrielControl.setValidators([Validators.required]);      
         courrielControl.disable();  
