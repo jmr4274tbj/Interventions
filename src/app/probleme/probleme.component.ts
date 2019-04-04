@@ -59,27 +59,23 @@ export class ProblemeComponent implements OnInit {
     telephoneControl.disable();
 
     if (typeNotification=== 'AucuneNotification') {  
-      /* Telephone -> Désactivé / Courriel -> Désactivé / CourrielConfirmation -> Désactivé */
-      courrielControl.setValidators([Validators.required]);      
+      courrielControl.setValidators([Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]")]);      
       courrielControl.disable();  
       courrielConfirmationControl.setValidators([Validators.required]);              
       courrielConfirmationControl.disable(); 
       telephoneControl.setValidators([Validators.required]);      
       telephoneControl.disable();  
     } else if (typeNotification=== 'ParCourriel') {  
-      /* Telephone -> Désactivé / Courriel -> Activé / CourrielConfirmation -> Activé */
-      courrielControl.setValidators([Validators.required]);      
+      courrielControl.setValidators([Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]")]);      
       courrielControl.enable();  
       courrielConfirmationControl.setValidators([Validators.required]);              
       courrielConfirmationControl.enable();  
       telephoneControl.setValidators([Validators.required]);      
-      telephoneControl.disable();
-      // Le validateur est dans un autre fichier (email-matcher.component.ts) : 
+      telephoneControl.disable(); 
       courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])]);                       
     } else {
 
       if(typeNotification === 'ParSMS') {  
-        /* Telephone -> Activé / Courriel -> Désactivé / CourrielConfirmation -> Désactivé */
         telephoneControl.setValidators([Validators.required]);      
         telephoneControl.enable();     
         courrielControl.setValidators([Validators.required]);      
