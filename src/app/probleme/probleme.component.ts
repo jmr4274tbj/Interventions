@@ -75,7 +75,7 @@ export class ProblemeComponent implements OnInit {
       courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])]);                       
     } else {
 
-      if(typeNotification === 'ParSMS') {  
+      if(typeNotification === 'ParMessagerieTexte') {  
         telephoneControl.setValidators([Validators.required]);      
         telephoneControl.enable();     
         courrielControl.setValidators([Validators.required]);      
