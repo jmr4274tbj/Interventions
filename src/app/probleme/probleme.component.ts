@@ -66,7 +66,7 @@ export class ProblemeComponent implements OnInit {
       telephoneControl.setValidators([Validators.required]);      
       telephoneControl.disable();  
     } else if (typeNotification=== 'ParCourriel') {  
-      courrielControl.setValidators([Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]")]);      
+      courrielControl.setValidators([Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+")]);      
       courrielControl.enable();  
       courrielConfirmationControl.setValidators([Validators.required]);              
       courrielConfirmationControl.enable();  
@@ -75,8 +75,8 @@ export class ProblemeComponent implements OnInit {
       courrielGroupControl.setValidators([Validators.compose([emailMatcherValidator.courrielDifferents()])]);                       
     } else {
 
-      if(typeNotification === 'ParMessagerieTexte') {  
-        telephoneControl.setValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9]")]);      
+    if(typeNotification === 'ParMessagerieTexte') {  
+        telephoneControl.setValidators([Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("[0-9]+")]);      
         telephoneControl.enable();     
         courrielControl.setValidators([Validators.required]);      
         courrielControl.disable();  

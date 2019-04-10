@@ -251,7 +251,8 @@ describe('ProblemeComponent', () => {
     let zone = component.problemeForm.get('telephone');
     zone.setValue('1234567890');
     errors = zone.errors || {}
-    expect(zone.valid).toBeTruthy(); 
+    expect(zone.errors).toBeFalsy(); 
   });
+  // TP14
 
 });
