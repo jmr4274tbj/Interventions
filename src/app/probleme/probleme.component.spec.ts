@@ -204,7 +204,7 @@ describe('ProblemeComponent', () => {
   });
 
   it('#32 | Zone TELEPHONE est invalide sans valeur quand notifier par messagerie texte', () => { 
-    // À REVOIR
+    // À VÉRIFIER
     component.appliquerNotifications('ParMessagerieTexte');
     let errors = {};
     let zone = component.problemeForm.get('telephone');
@@ -214,7 +214,7 @@ describe('ProblemeComponent', () => {
   });
 
   it('#33 | Zone TELEPHONE est invalide avec des caractères non-numériques quand notifier par messagerie texte', () => { 
-    // À REVOIR
+    // À VÉRIFIER
     component.appliquerNotifications('ParMessagerietexte');
     let errors = {};    
     let zone = component.problemeForm.get('telephone');
@@ -225,6 +225,7 @@ describe('ProblemeComponent', () => {
   });
 
   it('#34 | Zone TELEPHONE est invalide avec 9 chiffres consécutifs quand notifier par messagerie texte', () => { 
+    // À VÉRIFIER
     component.appliquerNotifications('ParMessagerietexte');
     let errors = {};    
     let zone = component.problemeForm.get('telephone');
@@ -234,6 +235,7 @@ describe('ProblemeComponent', () => {
   });
 
   it('#35 | Zone TELEPHONE est invalide avec 11 chiffres consécutifs quand notifier par messagerie texte', () => { 
+    // À VÉRIFIER
     component.appliquerNotifications('ParMessagerietexte');
     let errors = {};    
     let zone = component.problemeForm.get('telephone');
@@ -243,6 +245,7 @@ describe('ProblemeComponent', () => {
   });
 
   it('#36 | Zone TELEPHONE est valide avec 10 chiffres consécutifs quand notifier par messagerie texte', () => { 
+    // À REVOIR
     component.appliquerNotifications('ParMessagerietexte');
     let errors = {};    
     let zone = component.problemeForm.get('telephone');
