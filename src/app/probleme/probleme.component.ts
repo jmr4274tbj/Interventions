@@ -82,6 +82,7 @@ export class ProblemeComponent implements OnInit {
       courrielConfirmationControl.disable();           
     } else {
       if(typeNotification === 'Inconnu') {
+        // ng test --code-coverage
         telephoneControl.setValidators([Validators.required]);      
         telephoneControl.disable();     
         courrielControl.setValidators([Validators.required]);      
