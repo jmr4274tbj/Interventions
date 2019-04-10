@@ -43,7 +43,7 @@ export class ProblemeComponent implements OnInit {
    
     // Tous remettre à zéro
     courrielControl.clearValidators();
-    courrielControl.reset();  // Pour enlever les messages d'erreur si le controle contenait des données invaldides
+    courrielControl.reset();  // Pour enlever les messages d'erreur si le controle contenait des données invalides
     courrielControl.disable();  
 
     courrielConfirmationControl.clearValidators();
