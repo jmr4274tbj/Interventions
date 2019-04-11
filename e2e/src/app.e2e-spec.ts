@@ -24,22 +24,26 @@ describe('workspace-project App', () => {
   });
 
   it('#40 | Doit activer le bouton Sauvegarder avec champs valides scénario alternatif Par courriel', () => {
-
+    page.setChampsValidesScenarioAlternatifParCourriel()                    
+    expect(page.boutonSubmit().isEnabled()).toBe(true);
   });
 
   it('#41 | Zone DESCRIPTION DU PROBLÈME a une bordure VERTE si nombre de caractères suffisant', () => {
-
+    page.setZoneDescriptionProblemeCaracteresSuffisants();  
+    expect(page.obtenirClasseZoneDescriptionProbleme()).toContain('is-valid');
   });
 
   it('#42 | Zone DESCRIPTION DU PROBLÈME a une bordure ROUGE si nombre de caractères insuffisant ', () => {
-
+    page.setZoneDescriptionProblemeCaracteresInsuffisants();  
+    expect(page.obtenirClasseZoneDescriptionProbleme()).toContain('is-invalid');
   });
 
-  /*afterEach(async () => {
+  
+  afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
     expect(logs).not.toContain(jasmine.objectContaining({
       level: logging.Level.SEVERE,
     } as logging.Entry));
-  });*/
+  });
 });
